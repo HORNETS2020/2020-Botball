@@ -1,1 +1,28 @@
-
+int main(){
+  //RELOCATING MATERIAL TRANSPORT
+  //starts with robot with RH side parallel to boundary
+  //uses gyroDrive for t seconds until lined up with Mining Ramp
+  /*
+  removes Material Transport from underneath Mining Ramp
+  */
+  
+  //ADVANCING TO MINE
+  //uses gyroDrive for t seconds until IR sensor is able to detect line on Mining Ramp
+  //uses lineFollow for t seconds to drive up Mining Ramp until aligned with Mining Platform
+  //uses gyroLeft to turn left 90 degrees, faces Spud toward the Mine
+  //uses gyroDrive for t seconds until IR sensor is able to detect line on Mining Platform
+  //uses lineFollow for t seconds to drive down Mining Platform until aligned with Titanium Oxide Mine
+  
+  //COLLECTING TITANIUM OXIDE FROM MINE
+  /*
+  claw pick stuf up here
+  */
+  
+  //RETREATING TO MATERIAL TRANSPORT
+  //uses lineFollow for t seconds to drive backwards down Mining Platform until aligned with Mining Ramp
+  //uses gyroLeft to turn left 90 degrees, faces Spud down the Mining Ramp
+  //uses lineFollow for t seconds to drive down Mining Ramp until aligned with Material Transport
+  
+  //PLACING TITANIUM OXIDE INTO MATERIAL TRANSPORT
+  //
+}

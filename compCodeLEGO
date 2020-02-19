@@ -1,0 +1,8 @@
+#include <kipr/wombat.h>
+#include </home/root/Documents/KISS/China Numba Won/Top Seclet Nucrear Info/src/main.c>
+
+int main(){
+    gyroDrive(1000, 2);
+    ao();
+    return 0;
+}

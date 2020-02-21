@@ -1,0 +1,63 @@
+#include <kipr/wombat.h>
+void gyroCali(); //calibrate gyro, *INCLUDED IN ALL GYRO FUNCTIONS*
+
+void gyroDrive(int speed, double cm); //Drive function
+void stopDrive();
+
+int leftMotor = 0;
+int aightMotor = 2;
+int tick = 85;
+double avg = 0;
+double bias = 0;
+
+int main()
+{ 
+    gyroDrive(1000, 100);
+    stopDrive();
+    ao();
+    return 0;
+}
+
+void gyroCali(){
+    int i = 0;
+    avg = 0;
+    msleep(1000);
+    while (i < 50){
+        avg += gyro_z();
+        msleep(1);
+        i++;
+    }
+    bias = avg / 50.0;
+}
+
+
+void gyroDrive(int speed, double cm){
+    double theta = 0;
+    gyroCali();
+    cmpc(0);
+    cmpc(2);
+    while (gmpc(leftMotor) < cm * tick && gmpc(aightMotor) < cm * tick)
+    {
+        if(theta > -1000 && theta < 1000){
+            mav(leftMotor, speed);
+            mav(aightMotor, speed);
+        }
+        else if(theta < -1000){
+            mav(leftMotor, speed + 100);
+            mav(aightMotor, speed - 100);
+        }
+        else{
+            mav(leftMotor, speed - 100);
+            mav(aightMotor, speed + 100);
+        }
+        msleep(10);
+        theta += (gyro_z() - bias) * 10;
+        printf("Current theta: %lf\n", theta);
+    }
+}
+
+void stopDrive(){
+    motor(0,0);
+    motor(2,0);
+    msleep(100);
+}
